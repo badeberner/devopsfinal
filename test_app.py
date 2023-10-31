@@ -1,16 +1,21 @@
 from selenium import webdriver
+from selenium.webdriver.common.by import By
 import unittest
 
 class FlaskAppTest(unittest.TestCase):
 
     def setUp(self):
-        # Path to your WebDriver executable within your repository
-        self.driver = webdriver.Chrome(executable_path='./drivers/chromedriver')
+        # Initialize the WebDriver
+        self.driver = webdriver.Chrome()
         self.driver.implicitly_wait(10)
 
     def test_homepage(self):
         self.driver.get('http://localhost:5000')
         self.assertIn('Welcome to Flask App', self.driver.page_source)
+
+        # Find the button using the 'By' class
+        button = self.driver.find_element(By.ID, 'myButton')
+        self.assertEqual(button.text, 'Click Me')
 
     def tearDown(self):
         self.driver.quit()
