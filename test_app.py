@@ -13,7 +13,7 @@ class FlaskAppTest(unittest.TestCase):
         self.driver.get('http://localhost:5000')
         self.assertIn('Welcome to Flask App', self.driver.page_source)
 
-        # Find the button using the 'By' class
+        
         button = self.driver.find_element(By.ID, 'myButton')
         self.assertEqual(button.text, 'Click Me')
 
